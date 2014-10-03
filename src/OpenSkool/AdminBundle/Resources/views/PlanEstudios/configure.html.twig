@@ -51,38 +51,10 @@
     <div id="data-ajax"></div>
 {% endblock %}
 
+{% use '@OpenSkoolAdmin/PlanEstudios/etapas.html.twig' with javascripts as etapas_js %}
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        $(document).ready(function () {
-            $('#list-etapas').sortable({
-                axis: 'y',
-                items: '> li.active',
-                cursor: 'move',
-                update: function () {
-                    var pos = 0;
-                    $('#list-etapas').find('.list-group-item').each(function () {
-                        $(this).find('input.orden').val(pos++);
-                    });
-                }
-            }).on('click', '.etapa-link', function (e) {
-                e.preventDefault();
-                $.get($(this).attr('href')).done(function (html) {
-                    $("#list-etapas").html($($.parseHTML(html)).find('#list-etapas').html());
-                });
-            });
-            $('#reordenar-etapas').on('click', function (e) {
-                e.preventDefault();
-                $.get('{{ admin.generateObjectUrl('ordenar_etapas', object) }}?' + $('input.orden:hidden').serialize());
-            });
-            $('#add-etapa').on('click', function (e) {
-                e.preventDefault();
-                $("#add-etapa-ajax").load($(this).attr('href'), function () {
-                    $("#add-etapa-modal").modal().trigger('sonata-admin-append-form-element');
-                });
-            });
-        });
-    </script>
+    {{ block('etapas_js') }}
 {% endblock %}
 
 {% block stylesheets %}
