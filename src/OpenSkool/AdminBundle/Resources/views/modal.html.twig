@@ -1,0 +1,26 @@
+{% set _header = block('header') %}
+{% set _body = block('body') %}
+{% set _footer = block('footer') %}
+{% set show_close = show_close|default(false) %}
+<div class="modal fade" {% if id is defined %}id="{{ id }}"{% endif %}>
+    <div class="modal-dialog {{ size ? 'modal-'~size : '' }}">
+        <div class="modal-content" style="border-radius: 0">
+            {% if _header is not empty %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{ _header|raw }}</h4>
+                </div>
+            {% endif %}
+            {% block content %}
+                {% if _body is not empty %}
+                    <div class="modal-body">{{ _body|raw }}</div>{% endif %}
+                {% if _footer is not empty or show_close %}
+                    <div class="modal-footer">
+                        {{ _footer|default|raw }}
+                        {% if show_close %}<a href="#" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</a>{% endif %}
+                    </div>
+                {% endif %}
+            {% endblock content %}
+        </div>
+    </div>
+</div>

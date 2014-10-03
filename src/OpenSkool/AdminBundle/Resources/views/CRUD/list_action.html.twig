@@ -1,0 +1,9 @@
+{#{{ dump(_context|keys, action, route, value, _key, actions) }}#}
+{% set route_name = actions.route.name|default(_key)  %}
+{##}
+{% if admin.isGranted('EDIT', object) and admin.hasRoute(route_name) %}
+    <a href="{{ admin.generateObjectUrl(route_name, object) }}" class="btn btn-sm btn-default edit_{{ _key }}" title="{{ 'action_edit'|trans({}, 'SonataAdminBundle') }}">
+        <i class="glyphicon glyphicon-{{ actions.icon|default }}"></i>
+        {{ actions.label|default(_key|title) }}
+    </a>
+{% endif %}

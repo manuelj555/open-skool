@@ -1,0 +1,22 @@
+services:
+    open_skool_locality.admin.country:
+        class: OpenSkool\LocalityBundle\Admin\CountryAdmin
+        arguments: [~, Yepsua\LocalityBundle\Entity\Country, SonataAdminBundle:CRUD]
+        calls:
+            - [addChild, [@open_skool_locality.admin.locality]]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: system, label: Country}
+
+    open_skool_locality.admin.locality:
+        class: OpenSkool\LocalityBundle\Admin\LocalityAdmin
+        arguments: [~, Yepsua\LocalityBundle\Entity\Locality, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: system, label: Locality}
+        calls:
+            - [addChild, [@open_skool_locality.admin.city]]
+
+    open_skool_locality.admin.city:
+        class: OpenSkool\LocalityBundle\Admin\CityAdmin
+        arguments: [~, Yepsua\LocalityBundle\Entity\City, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: system, label: City}

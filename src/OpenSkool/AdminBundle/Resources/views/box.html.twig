@@ -1,0 +1,23 @@
+{% set _header = block('header') %}
+{% set _body = block('body') %}
+{% set _footer = block('footer') %}
+<div class="box box-{{ type|default('primary') }}">
+
+    {% if _header is not empty %}
+        <div class="box-header"><h4 class="box-title">{{ _header|raw }}</h4></div>
+    {% endif %}
+
+    {% if _body is not empty %}
+        <div class="box-body">
+            {{ _body|raw }}
+
+            {% if _footer is not empty %}{{ _footer|raw }}{% endif %}
+
+        </div>
+    {% endif %}
+
+    {#{% if _footer is not empty %}#}
+    {#<div class="box-footer">{{ _footer|raw }}</div>#}
+    {#{% endif %}#}
+
+</div>

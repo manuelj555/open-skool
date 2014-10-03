@@ -1,0 +1,38 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        # Your other blocks
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        sonata.media.block.gallery:
+
+sonata_admin:
+    title:      Prueba Open Skool
+#    title_logo: bundles/acmedemo/img/fancy_acme_logo.png
+    security:
+        handler: sonata.admin.security.handler.role
+    dashboard:
+        blocks:
+            -
+                type: sonata.admin.block.admin_list
+                position: left
+                settings:
+                    groups: [instituciones, plan_estudios]
+            -
+                type: sonata.admin.block.admin_list
+                position: right
+                settings:
+                    groups: [admin, system]
+        groups:
+            instituciones:
+                label: Instituciones
+            plan_estudios:
+                label: Plan de Estudios
+            admin:
+                label: Administración
+            system:
+                label: Sistema
+#                roles: [ROLE_SUPER_ADMIN_2]

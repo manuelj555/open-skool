@@ -1,10 +1,11 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: sonata.yml }
 
 framework:
     #esi:             ~
-    translator:      { fallback: "en" }
+    translator:      { fallback: "es" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -36,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+#    bundles:        [ ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

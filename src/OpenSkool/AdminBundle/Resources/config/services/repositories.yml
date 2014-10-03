@@ -1,0 +1,6 @@
+services:
+    open_skool.repository.etapa_plan_estudios:
+        class: OpenSkool\AdminBundle\Entity\Repository\EtapaPlanEstudiosRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: [OpenSkool\AdminBundle\Entity\EtapaPlanEstudios]

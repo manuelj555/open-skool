@@ -1,0 +1,57 @@
+{% block etapas %}
+    <div class="row">
+        <div class="col-sm-12">
+
+            <a class="btn btn-primary" id="add-etapa"
+               href="{{ admin.generateObjectUrl('add_etapa', object) }}">{{ bs_icon('plus') }} Agregar</a>
+            <a class="btn btn-primary" id="reordenar-etapas" href="#">{{ bs_icon('sort') }} Ordenar</a>
+
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="panel panel-default" id="list-etapas-ajax-container">
+                <ul id="list-etapas" class="list-group">
+                    {% for item in etapas %}
+                        <li class="list-group-item {{ item.activo ? 'active' : 'inactive' }}">
+                            <input type="hidden" class="orden" name="orden-etapas[{{ item.id }}]"
+                                   value="{{ item.orden }}">
+
+                            <div class="row">
+                                <div class="col-xs-1">{{ bs_icon(item.activo ? 'eye-open' : 'eye-close') }}</div>
+                                <div class="col-xs-11">
+                                    {{ item.etapa.nombre }}
+                                    <div class="dropdown pull-right">
+                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button"
+                                                data-toggle="dropdown">Más <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a class="etapa-link"
+                                                   href="{{ admin.generateUrl('activar_etapa', {
+                                                   id: object.id,
+                                                   etapa: item.id,
+                                                   active: item.activo ? '0' : '1',
+                                                   }) }}">{{ item.activo ? 'Desactivar' : 'Activar' }}</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="etapa-link"
+                                                   href="{{ admin.generateUrl('eliminar_etapa', {
+                                                   id: object.id,
+                                                   etapa: item.id,
+                                                   }) }}">Eliminar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

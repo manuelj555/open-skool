@@ -1,0 +1,68 @@
+services:
+    open_skool_admin.admin.asignatura:
+        class: OpenSkool\AdminBundle\Admin\AsignaturaAdmin
+        arguments: [ ~ , OpenSkool\AdminBundle\Entity\Asignatura, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Asignatura }
+
+    open_skool_admin.admin.mencion:
+            class: OpenSkool\AdminBundle\Admin\MencionAdmin
+            arguments: [~, OpenSkool\AdminBundle\Entity\Mencion, SonataAdminBundle:CRUD]
+            tags:
+                - {name: sonata.admin, manager_type: orm, group: admin, label: Mencion}
+
+    open_skool_admin.admin.carrera:
+        class: OpenSkool\AdminBundle\Admin\CarreraAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Carrera, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Carrera}
+
+    open_skool_admin.admin.facultad:
+        class: OpenSkool\AdminBundle\Admin\FacultadAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Facultad, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Facultad}
+
+    open_skool_admin.admin.periodo:
+        class: OpenSkool\AdminBundle\Admin\PeriodoAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Periodo, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Periodo}
+
+    open_skool_admin.admin.turno:
+        class: OpenSkool\AdminBundle\Admin\TurnoAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Turno, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Turno}
+
+    open_skool_admin.admin.seccion:
+        class: OpenSkool\AdminBundle\Admin\SeccionAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Seccion, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Seccion}
+
+    open_skool_admin.admin.pensum_asignatura:
+        class: OpenSkool\AdminBundle\Admin\PensumAsignaturaAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\PensumAsignatura, SonataAdminBundle:CRUD]
+        tags:
+                - {name: sonata.admin, manager_type: orm, group: instituciones, label: PensumAsignatura}
+
+    open_skool_admin.admin.plan_estudios:
+        class: OpenSkool\AdminBundle\Admin\PlanEstudiosAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\PlanEstudios, OpenSkoolAdminBundle:PlanEstudios]
+        calls:
+            - [setEtapaPlanEstudiosRepository, [@open_skool.repository.etapa_plan_estudios]]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: plan_estudios, label: PlanEstudios}
+
+    open_skool_admin.admin.pensum:
+        class: OpenSkool\AdminBundle\Admin\PensumAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Pensum, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: instituciones, label: Pensum}
+
+    open_skool_admin.admin.etapa:
+        class: OpenSkool\AdminBundle\Admin\EtapaAdmin
+        arguments: [~, OpenSkool\AdminBundle\Entity\Etapa, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: plan_estudios, label: Etapa}

@@ -1,0 +1,22 @@
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs" role="tablist">
+        {% block header %}{% endblock %}
+    </ul>
+    <div class="tab-content">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+{##}
+{% macro tab(target, text, active = false) -%}
+    <li {% if active %}class="active"{% endif %}>
+        <a href="#{{ target }}" data-toggle="tab">{{ text }}</a>
+    </li>
+{%- endmacro %}
+{##}
+{% macro content(target, content, active = false, escape = false) -%}
+    <div class="tab-pane {{ active ? 'active' : '' }}" id="{{ target }}">
+        <div class="box-body">
+            {{- escape ? content|e : content|raw -}}
+        </div>
+    </div>
+{%- endmacro %}
